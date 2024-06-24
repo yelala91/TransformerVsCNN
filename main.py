@@ -85,12 +85,12 @@ def main():
         
         model = None
         if args.model == 'ViT':
-            model = md.SimpleViT(image_size=32, patch_size=4, num_classes=100, dim=256, depth=16, heads=8, mlp_dim=256)
-            weights = torch.load(args.weight)
-            model.load_state_dict(weights)
+            model = md.SimpleViT(image_size=32, patch_size=4, num_classes=100, dim=256, depth=4, heads=12, mlp_dim=256)
         elif args.model == 'cnn':
-            pass
-        
+            model = md.cnn()
+            
+        weights = torch.load(args.weight)
+        model.load_state_dict(weights)
         acc = train.test(model, test_loader, args)
         print(f'Acc is {acc*100: .2f}%')
         

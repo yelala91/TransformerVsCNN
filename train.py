@@ -58,7 +58,7 @@ def train_one_step(model, loaders, optimizer, curr_epoch,
         
         acc = correct/total
         if writer is not None:
-            writer.add_scalar('Acc', acc)
+            writer.add_scalar('Acc', acc, (curr_epoch+1) / args.val_freq)
         
         print(f'Acc: {acc*100: .2f}%')  
     
